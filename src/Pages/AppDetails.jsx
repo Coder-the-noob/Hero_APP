@@ -31,6 +31,20 @@ const AppDetails = () => {
     downloads,
   } = app;
 
+  const handleToInstall = () =>{
+    const existApps = JSON.parse( localStorage.getItem('installed'))
+    let updateApps = [];
+    if(existApps){
+        const isDuplicate = existApps.some(p=>p.id===app.id)
+        if(isDuplicate) return alert('Already added in the list')
+         updateApps = [...existApps, app]
+    }else{
+        updateApps.push(app)
+    }
+    localStorage.setItem('installed', JSON.stringify(updateApps));
+
+  }
+
   const formatNumber = (num) => {
     if (num >= 1_000_000)
       return (num / 1_000_000).toFixed(1).replace(".0", "") + "M";
@@ -81,7 +95,7 @@ const AppDetails = () => {
               </div>
             </div>
 
-            <button className="mt-4 bg-[#00d390] hover:bg-[#00cc75] text-white font-bold text-sm px-5 py-2 rounded-md shadow-sm transition-all w-1/2 block">
+            <button onClick={handleToInstall} className="mt-4 bg-[#00d390] hover:bg-[#00cc75] text-white font-bold text-sm px-5 py-2 rounded-md shadow-sm transition-all w-1/2 block">
               Install Now ({size} MB)
             </button>
           </div>
