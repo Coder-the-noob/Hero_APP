@@ -1,11 +1,11 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link} from "react-router";
 import AppCards from "../Components/AppCards/AppCards";
+import useApps from "../Hooks/useApps";
 
 const Home = () => {
-  const apps = useLoaderData();
+  const {apps, loading, error} = useApps();
   const featureApps = apps.slice(0, 12);
-  console.log(apps);
   return (
     <div>
       <div className="mb-5 flex flex-col items-center justify-center">
