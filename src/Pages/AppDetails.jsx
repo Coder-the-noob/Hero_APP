@@ -5,6 +5,7 @@ import downLogo from "../assets/icon-downloads.png";
 import ratingLogo from "../assets/icon-ratings.png";
 import reviewLogo from "../assets/icon-review.png";
 
+
 const AppDetails = () => {
   const { id } = useParams();
   const { apps, loading, error } = useApps();
@@ -42,6 +43,7 @@ const AppDetails = () => {
         updateApps.push(app)
     }
     localStorage.setItem('installed', JSON.stringify(updateApps));
+
 
   }
 
