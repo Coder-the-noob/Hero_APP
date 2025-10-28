@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import logo from "../../assets/logo.png";
 import git_logo from "../../assets/github_logo.png";
 
@@ -16,13 +16,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -30,51 +29,98 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/">
-                <a>Home</a>
-              </Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-purple-600 font-semibold"
+                    : "hover:text-purple-600"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/allapps">
-                <a>Apps</a>
-              </Link>
+              <NavLink
+                to="/allapps"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-purple-600 font-semibold"
+                    : "hover:text-purple-600"
+                }
+              >
+                Apps
+              </NavLink>
             </li>
             <li>
-              <Link to="/installation">
-                <a>Installation</a>
-              </Link>
+              <NavLink
+                to="/installation"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-purple-600 font-semibold"
+                    : "hover:text-purple-600"
+                }
+              >
+                Installation
+              </NavLink>
             </li>
           </ul>
         </div>
-        <Link to="/" className="flex items-center gap-2 ml-4">
+
+        <NavLink to="/" className="flex items-center gap-2 ml-4">
           <img src={logo} alt="Logo" className="w-10 h-10" />
           <span className="text-xl font-extrabold bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] bg-clip-text text-transparent">
             HERO.IO
           </span>
-        </Link>
+        </NavLink>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 items-center gap-6">
           <li>
-            <Link to="/">
-              <a>Home</a>
-            </Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-600 font-semibold border-b-2 border-purple-600"
+                  : "hover:text-purple-600"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/allapps">
-              <a>Apps</a>
-            </Link>
+            <NavLink
+              to="/allapps"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-600 font-semibold border-b-2 border-purple-600"
+                  : "hover:text-purple-600"
+              }
+            >
+              Apps
+            </NavLink>
           </li>
           <li>
-            <Link to="/installation">
-              <a>Installation</a>
-            </Link>
+            <NavLink
+              to="/installation"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-600 font-semibold border-b-2 border-purple-600"
+                  : "hover:text-purple-600"
+              }
+            >
+              Installation
+            </NavLink>
           </li>
         </ul>
       </div>
+
       <div className="navbar-end">
         <Link
           to="/github"
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn flex items-center gap-2 text-white bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] hover:opacity-90 border-radius-4 px-4 py-2 mr-4"
         >
           <img
