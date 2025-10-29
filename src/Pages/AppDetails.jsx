@@ -4,7 +4,14 @@ import useApps from "../Hooks/useApps";
 import downLogo from "../assets/icon-downloads.png";
 import ratingLogo from "../assets/icon-ratings.png";
 import reviewLogo from "../assets/icon-review.png";
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const AppDetails = () => {
   const { id } = useParams();
@@ -32,20 +39,18 @@ const AppDetails = () => {
     downloads,
   } = app;
 
-  const handleToInstall = () =>{
-    const existApps = JSON.parse( localStorage.getItem('installed'))
+  const handleToInstall = () => {
+    const existApps = JSON.parse(localStorage.getItem("installed"));
     let updateApps = [];
-    if(existApps){
-        const isDuplicate = existApps.some(p=>p.id===app.id)
-        if(isDuplicate) return alert('Already added in the list')
-         updateApps = [...existApps, app]
-    }else{
-        updateApps.push(app)
+    if (existApps) {
+      const isDuplicate = existApps.some((p) => p.id === app.id);
+      if (isDuplicate) return alert("Already added in the list");
+      updateApps = [...existApps, app];
+    } else {
+      updateApps.push(app);
     }
-    localStorage.setItem('installed', JSON.stringify(updateApps));
-
-
-  }
+    localStorage.setItem("installed", JSON.stringify(updateApps));
+  };
 
   const formatNumber = (num) => {
     if (num >= 1_000_000)
@@ -97,10 +102,55 @@ const AppDetails = () => {
               </div>
             </div>
 
-            <button onClick={handleToInstall} className="mt-4 bg-[#00d390] hover:bg-[#00cc75] text-white font-bold text-sm px-5 py-2 rounded-md shadow-sm transition-all w-1/2 block">
+            <button
+              onClick={handleToInstall}
+              className="mt-4 bg-[#00d390] hover:bg-[#00cc75] text-white font-bold text-sm px-5 py-2 rounded-md shadow-sm transition-all w-1/2 block"
+            >
               Install Now ({size} MB)
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* ⭐ Ratings Bar Chart */}
+      <div className="w-full mt-10 p-4 shadow-sm bg-white border border-gray-100 rounded-xl">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">Ratings</h3>
+        <div className="h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              layout="vertical"
+              data={[
+                { name: "5 star", value: 12000 },
+                { name: "4 star", value: 8000 },
+                { name: "3 star", value: 3000 },
+                { name: "2 star", value: 2000 },
+                { name: "1 star", value: 1000 },
+              ]}
+              margin={{ top: 10, right: 20, left: 60, bottom: 10 }}
+            >
+              <XAxis
+                type="number"
+                domain={[0, 12000]}
+                tick={{ fill: "#9CA3AF" }}
+              />
+              <YAxis
+                type="category"
+                dataKey="name"
+                tick={{ fill: "#6B7280", fontSize: 13 }}
+                width={60}
+              />
+              <Tooltip
+                formatter={(value) => [value.toLocaleString(), "Ratings"]}
+                cursor={{ fill: "rgba(0,0,0,0.05)" }}
+              />
+              <Bar
+                dataKey="value"
+                fill="#FF8C00"
+                barSize={18}
+                radius={[4, 4, 4, 4]}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
 
