@@ -117,8 +117,8 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
-        <Link
-          to="/github"
+        <a
+          href="https://github.com/Coder-the-noob"
           target="_blank"
           rel="noopener noreferrer"
           className="btn flex items-center gap-2 text-white bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] hover:opacity-90 border-radius-4 px-4 py-2 mr-4"
@@ -129,7 +129,7 @@ const Navbar = () => {
             className="w-7 h-7 rounded-full"
           />
           <span className="text-lg font-semibold">Contribute</span>
-        </Link>
+        </a>
       </div>
     </div>
   );
